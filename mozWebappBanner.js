@@ -15,7 +15,7 @@ var mozBanr = {
 
     _this = this;
 
-    manifestURL = manifestURL || "manifest.webapp";
+    manifestURL = manifestURL || "/manifest.webapp";
     _this.util.get(manifestURL, function(json){
       var manifest, searchURL;
 
@@ -28,18 +28,14 @@ var mozBanr = {
        );
     });
   },
+
   searchCallback: function(response){
     var app, nameMatch, _this;
     _this = this;
 
-    if(response.meta.total_count){
+    if(response.meta.total_count && response.objects[0].name == _this.manifest.name){
       _this.app = response.objects[0];
 
-      nameMatch = _this.app.name == _this.manifest.name;
-      console.log(nameMatch);
-
-      if(nameMatch){
-      }
     }
     else{
       
@@ -62,7 +58,6 @@ var mozBanr = {
     jsonp : function(endpoint, callback){
       var opr, script;
 
-
       callback = callback || "callback";
       opr = !!endpoint.match(/\?/) ? '&' : '?';
 
@@ -72,9 +67,14 @@ var mozBanr = {
       document.body.appendChild(script);
     }
   },
-  endpoints: {
-    search: "https://marketplace.firefox.com/api/v1/apps/search/?q=<%app_name%>&app_type=hosted&format=JSON"
-  }
-}
 
-mozBanr.init();
+  endpoints: {
+    search: "https://marketplace.firefox.com/api/v1/apps/search/?q=<%app_name%>&app_type=hosted&format=JSON",
+    app: "https://marketplace.firefox.com/api/v1/apps/app/<%app_name%>/?format=JSON"
+  },
+
+  locale: 'en',
+
+  app : false,
+  manifest : false
+}
