@@ -13,20 +13,25 @@ var mozBanr = {
   init: function(manifestURL){
     var _this;
 
-    _this = this;
+    if(!window.localStorage[this.name]){ //navigator.mozApps
+      _this = this;
 
-    manifestURL = manifestURL || "/manifest.webapp";
-    _this.util.get(manifestURL, function(json){
-      var manifest, searchURL;
+      manifestURL = manifestURL || "/manifest.webapp";
+      _this.util.get(manifestURL, function(json){
+        var manifest, searchURL;
 
-      _this.manifest = JSON.parse(json);
+        _this.manifest = JSON.parse(json);
 
-      searchURL = _this.endpoints.search.replace('<%app_name%>', _this.manifest.name);
-      _this.util.jsonp(
-        searchURL,
-        'mozBanr.searchCallback'
-       );
-    });
+        searchURL = _this.endpoints.search.replace('<%app_name%>', _this.manifest.name);
+        _this.util.jsonp(
+          searchURL,
+          'mozBanr.searchCallback'
+         );
+
+        _this.insertBanner();
+        _this.addEvents();
+      });
+    }
   },
 
   searchCallback: function(response){
@@ -37,8 +42,36 @@ var mozBanr = {
       _this.app = response.objects[0];
 
     }
-    else{
-      
+  },
+  insertBanner: function(){
+    var header;
+    var app = {};
+
+    app.name = this.app.name || this.manifest.name;
+    app.description = this.app.description || this.manifest.description;
+    app.icon = this.manifest.icons['128'] || this.manifest.icons['64'] || this.manifest.icons['48'] || this.manifest.icons['32'] || this.manifest.icons['24'] || this.manifest.icons['16'];
+
+    header = document.createElement('header');
+    header.id = this.name;
+    header.innerHTML = '<img id="mozBanr-logo" src="'+app.icon+'"/><article id="mozBanr-copy"><h1 id="mozBanr-name">' + app.name + '</h1><h2 id="mozBanr-description">' + app.description + '</h2></article><div id="mozBanr-install">Install</div><div id="mozBanr-close">X</div><div id="mozBanr-clear"></div>';
+
+    // <img id="mozBanr-logo" src="http://dublinbikes2go.com/apple-touch-icon.png"/>
+    // <article id="mozBanr-copy">
+    //   <h1 id="mozBanr-name">Dublin Bikes 2 Go</h1>
+    //   <h2 id="mozBanr-description">Infomration about Dublin Bikes for all mobile phones</h2>
+    // </article>
+    // <div id="mozBanr-install">test</div>
+    // <div id="mozBanr-close">X</div>
+    // <div id="mozBanr-clear"></div>
+
+    document.body.insertBefore(header, document.body.firstChild);
+  },
+  addEvents: function(){
+    var _this = this;
+
+    document.getElementById('mozBanr-close').onclick = function(){
+      this.parentNode.parentNode.removeChild(this.parentNode);
+      window.localStorage.setItem(_this.name, _this.name);
     }
   },
 
@@ -76,5 +109,7 @@ var mozBanr = {
   locale: 'en',
 
   app : false,
-  manifest : false
+  manifest : false,
+
+  name: 'mozBanr'
 }
