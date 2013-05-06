@@ -5,31 +5,68 @@ body{
 #mozBanr{
   /*height: 4em;*/
   background: grey;
-  padding: 0.5em;
+  padding: 0.4em;
   /*overflow: hidden;*/
   color: white;
   font-family: sans-serif;
+  background-color: #3E4E59;
+  background-image: linear-gradient(#566773, #3E4E59);
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15) inset, 0 0 3px 3px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+  height: 50px;
+  max-height: 50px;
+  width: 100%;
+  font-family: "Open Sans",OpenSansWeb,"Helvetica Neue",Arial,sans-serif;
+}
+
+#mozBanr > nav img{
+  margin-top:16px;
+  width: 18px;
+  height: 18px;
+}
+#mozBanr > nav *{
+  float:left;
+}
+#mozBanr > nav{
+  line-height: 50px;
+}
+#mozBanr .divider{
+  width: 1px;
+  background-image: linear-gradient(rgba(150, 150, 150, 0.2), rgba(150, 150, 150, 0.8), rgba(150, 150, 150, 0.2));
+  height: 40px;
+  margin: 5px;
+}
+.divder-right{
+  float:right;
 }
 #mozBanr-logo{
   float: left;
   background-color: #333;
   border-radius: 30px;
   box-shadow: 0px 2px 5px #333;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
 }
-#mozBanr-copy{
+#mozBanr-copy {
   float: left;
   padding-left: 0.5em;
+  width: 57%;
+  overflow: hidden;
+}
+#mozBanr-copy > *{
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 #mozBanr-name{
   margin: 0.2em 0em;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 #mozBanr-description{
-  float: left;
-  margin: 0.2em 0em;
-  font-size: 1em;
+  /*float: left;*/
+  margin: 0.1em 0em;
+  font-size: 0.9em;
+  font-style: italic;
+  font-weight: 300;
 }
 #mozBanr-clear{
   clear:both;
@@ -39,12 +76,4 @@ body{
   height: 50px;
   float: right;
   background-color: green;
-}
-#mozBanr-close{
-  width: 1em;
-  height: 1em;
-  line-height: 1em;
-  text-align: center;
-  float: right;
-  background-color: red;
 }
