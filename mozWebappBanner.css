@@ -16,6 +16,7 @@ body{
   max-height: 50px;
   width: 100%;
   font-family: "Open Sans",OpenSansWeb,"Helvetica Neue",Arial,sans-serif;
+  margin-bottom: 5px;
 }
 #mozBanr > nav *{
   float:left;
