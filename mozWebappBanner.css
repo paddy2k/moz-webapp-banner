@@ -5,7 +5,7 @@ body{
 #mozBanr{
   /*height: 4em;*/
   background: grey;
-  padding: 0.4em;
+  padding: 0.4em 0em;
   /*overflow: hidden;*/
   color: white;
   font-family: sans-serif;
@@ -17,17 +17,12 @@ body{
   width: 100%;
   font-family: "Open Sans",OpenSansWeb,"Helvetica Neue",Arial,sans-serif;
 }
-
-#mozBanr > nav img{
-  margin-top:16px;
-  width: 18px;
-  height: 18px;
-}
 #mozBanr > nav *{
   float:left;
 }
 #mozBanr > nav{
   line-height: 50px;
+  margin-left: 0.4em
 }
 #mozBanr .divider{
   width: 1px;
@@ -49,7 +44,7 @@ body{
 #mozBanr-copy {
   float: left;
   padding-left: 0.5em;
-  width: 57%;
+  width: 53%;
   overflow: hidden;
 }
 #mozBanr-copy > *{
@@ -72,8 +67,28 @@ body{
   clear:both;
 }
 #mozBanr-install{
-  width: 50px;
-  height: 50px;
   float: right;
-  background-color: green;
+  font-size: 13px;
+  margin: 8px 0.4em 0px 0px;
+  background-color: #1793E5;
+  background-image: linear-gradient(#4CB1FF, #1793E5);
+  background-repeat: repeat-x;
+  border: 1px solid #1793E5;
+  border-radius: 3px 3px 3px 3px;
+  color: #FFFFFF;
+  display: inline-block;
+  font: 400 14px/20px "Open Sans",OpenSansWeb,"Helvetica Neue",Arial,sans-serif;
+  padding: 0 8px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 30px;
+  /*height: 30px;*/
+}
+#mozBanr-close{
+  width: 18px;
+  height: 18px;
+  margin-top: 16px;
+  background-size: cover;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAABxElEQVQ4y5XUPasaQRQG4CEhkC5p0twivyCQIv/vgMVNNe0tkuamUhQRsRW/BS38QEQRRRREUEEQEdHq5D1md+/ueLzXDDywM3POy+rOrjmfz8ZDHvOfLn0mPE6nkyBgD3lr94j0BaHH45GAHbJm3nDVt16vHxH53hwOhxiwgsDcQFpPp9P5hdAvcrOfZ7OZ3e/3rCAwDtJqa7XaH2R9lzwJ/SAX0+nU7nY7VhAYD2k11Wo1Emi2220QPB6PLeasIM/VXqlUigbK2Gw2F37waDSymPM9CoXCdaCM1WoV8IOHw6HFnF+Tz+f1QBnL5TLCC36H6xiwplwu/0bNNzVQxmKxuIWANfglP9H6UerUMZ/PNQT8BqnRQ3GUXAR8J1JDJ5NJGAG7crncc7FYfNL2pOcqFEfIR8CuTCYjT/kHfG00Glarkd5I6GAwEATsSqfT4WNzOW71et1qtZIRhPb7fQJ2pVKpIBBzqQvOMV5Lq/U0m81/X6lerxcDDksmk0Eg5ibMD65UKtbty2azL18pvL+22+2ySCQSQSDmRuMH3+oLCvCEn+Lx+LO/0W63zWtu9V3+01ar5Rd8ggfZkLV7uH3+c/oLPpYkkpuUKKYAAAAASUVORK5CYII=');
 }
