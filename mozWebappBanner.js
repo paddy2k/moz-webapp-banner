@@ -65,7 +65,7 @@ var mozBanr = {
     // // HTML to be inserted into head of page
     // <header id="mozBanr">
     //   <nav>
-    //     <img id="mozBanr-close" src="https://marketplace.cdn.mozilla.net/media/img/mkt/icons/close.png"/>
+    //     <i id="mozBanr-close"></i>
     //     <div class="divider"></div>
     //   </nav>
     //   <img id="mozBanr-logo" src="'+app.icon+'"/>
@@ -79,7 +79,7 @@ var mozBanr = {
     // </header>
     header = document.createElement('header');
     header.id = this.name;
-    header.innerHTML = '<nav><img id="mozBanr-close" src="'+app.icon+'"/><div class="divider"></div></nav><img id="mozBanr-logo" src="'+app.icon+'"/><article id="mozBanr-copy"><h1 id="mozBanr-name">'+app.name+'</h1><h2 id="mozBanr-description">'+app.description+'</h2></article><button id="mozBanr-install">'+app.install+'</button><div class="divider divder-right"></div><div id="mozBanr-clear"></div>';
+    header.innerHTML = '<nav><i id="mozBanr-close"></i><div class="divider"></div></nav><img id="mozBanr-logo" src="'+app.icon+'"/><article id="mozBanr-copy"><h1 id="mozBanr-name">'+app.name+'</h1><h2 id="mozBanr-description">'+app.description+'</h2></article><button id="mozBanr-install">'+app.install+'</button><div class="divider divder-right"></div><div id="mozBanr-clear"></div>';
 
     document.body.insertBefore(header, document.body.firstChild);
   },
