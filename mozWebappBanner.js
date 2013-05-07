@@ -11,7 +11,7 @@
 
 var mozBanr = {
   init: function(manifest){
-    var _this, path, manifest;
+    var _this, path, manifest, request, apps;
     manifest =  manifest || "/manifest.webapp"; // Set default if absent
 
     // Only show banner if not hidden and compatiable with mozApps
@@ -30,8 +30,19 @@ var mozBanr = {
         var manifest, searchURL;
         _this.manifest = JSON.parse(json);
 
-        _this.insertBanner();
-        _this.addEvents();
+        request = window.navigator.mozApps.getInstalled();
+        request.onsuccess = function() {
+          // Don't show if app installed
+          apps = request.result;
+          for(var i=0;i<apps;i++){
+            if(apps[i].name ==_this.manifest.name){
+              return false;
+            }
+          }
+
+          _this.insertBanner();
+          _this.addEvents();
+        }
 
         // // Query the Marketplace API for rating etc.
         // searchURL = _this.endpoints.search.replace('<%app_name%>', _this.manifest.name);
