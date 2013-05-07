@@ -12,15 +12,16 @@
 var mozBanr = {
   init: function(manifest){
     var _this, path, manifest;
+    manifest =  manifest || "/manifest.webapp"; // Set default if absent
 
+    // Only show banner if not hidden and compatiable with mozApps
     if(navigator.mozApps && !window.localStorage[this.name]){ //
       _this = this;
 
-      // Get path for manifest
+      // Get absolute path for manifest
       path = window.location.pathname.split('/');
       path[path.length-1] = '';
 
-      manifest =  manifest || "/manifest.webapp"; // Set default if absent
       manifest = manifest.substr(0,1) == "/" ? manifest : path.join('/') + manifest;
 
       _this.manifestURL = window.location.protocol +"//"+ window.location.hostname + manifest;
@@ -29,14 +30,15 @@ var mozBanr = {
         var manifest, searchURL;
         _this.manifest = JSON.parse(json);
 
-        searchURL = _this.endpoints.search.replace('<%app_name%>', _this.manifest.name);
-        _this.util.jsonp(
-          searchURL,
-          'mozBanr.searchCallback'
-         );
-
         _this.insertBanner();
         _this.addEvents();
+
+        // // Query the Marketplace API for rating etc.
+        // searchURL = _this.endpoints.search.replace('<%app_name%>', _this.manifest.name);
+        // _this.util.jsonp(
+        //   searchURL,
+        //   'mozBanr.searchCallback'
+        //  );
       });
     }
   },
@@ -45,6 +47,7 @@ var mozBanr = {
     var app, nameMatch, _this;
     _this = this;
 
+    // Only continue if the app names match
     if(response.meta.total_count && response.objects[0].name == _this.manifest.name){
       _this.app = response.objects[0];
 
@@ -59,10 +62,7 @@ var mozBanr = {
     app.icon = this.manifest.icons['128'] || this.manifest.icons['64'] || this.manifest.icons['48'] || this.manifest.icons['32'] || this.manifest.icons['24'] || this.manifest.icons['16'];
     app.install = this.strings[this.locale]['install'];
 
-    header = document.createElement('header');
-    header.id = this.name;
-    header.innerHTML = '<nav><img id="mozBanr-close" src="'+app.icon+'"/><div class="divider"></div></nav><img id="mozBanr-logo" src="http://dublinbikes2go.com/apple-touch-icon.png"/><article id="mozBanr-copy"><h1 id="mozBanr-name">'+app.name+'</h1><h2 id="mozBanr-description">'+app.description+'</h2></article><button id="mozBanr-install">'+app.install+'</button><div class="divider divder-right"></div><div id="mozBanr-clear"></div>';
-
+    // // HTML to be inserted into head of page
     // <header id="mozBanr">
     //   <nav>
     //     <img id="mozBanr-close" src="https://marketplace.cdn.mozilla.net/media/img/mkt/icons/close.png"/>
@@ -77,6 +77,9 @@ var mozBanr = {
     //   <div class="divider divder-right"></div>
     //   <div id="mozBanr-clear"></div>
     // </header>
+    header = document.createElement('header');
+    header.id = this.name;
+    header.innerHTML = '<nav><img id="mozBanr-close" src="'+app.icon+'"/><div class="divider"></div></nav><img id="mozBanr-logo" src="'+app.icon+'"/><article id="mozBanr-copy"><h1 id="mozBanr-name">'+app.name+'</h1><h2 id="mozBanr-description">'+app.description+'</h2></article><button id="mozBanr-install">'+app.install+'</button><div class="divider divder-right"></div><div id="mozBanr-clear"></div>';
 
     document.body.insertBefore(header, document.body.firstChild);
   },
@@ -95,8 +98,7 @@ var mozBanr = {
       app.onsuccess = function(data) {
         // Prevent the banner appearing again
         window.localStorage.setItem(_this.name, _this.name);
-      };
-
+      }
     }
   },
 
