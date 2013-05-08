@@ -11,7 +11,7 @@
 
 var mozBanr = {
   init: function(manifest){
-    var _this, path, manifest, request, apps;
+    var _this, path, manifest, request;
     manifest =  manifest || "/manifest.webapp"; // Set default if absent
 
     // Only show banner if not hidden and compatiable with mozApps
@@ -33,11 +33,8 @@ var mozBanr = {
         request = window.navigator.mozApps.getInstalled();
         request.onsuccess = function() {
           // Don't show if app installed
-          apps = request.result;
-          for(var i=0;i<apps;i++){
-            if(apps[i].name ==_this.manifest.name){
-              return false;
-            }
+          if(request.result.length){
+            return false;
           }
 
           _this.insertBanner();
