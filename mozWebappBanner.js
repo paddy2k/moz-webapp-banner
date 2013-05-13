@@ -42,7 +42,7 @@ var mozBanr = {
         }
 
         // // Query the Marketplace API for rating etc.
-        // searchURL = _this.endpoints.search.replace('<%app_name%>', _this.manifest.name);
+        // searchURL = _this.endpoints.search.replace('<%app_name%>', _this.manifest.name).replace('<%app_type%>', _this.appType);
         // _this.util.jsonp(
         //   searchURL,
         //   'mozBanr.searchCallback'
@@ -137,14 +137,20 @@ var mozBanr = {
   },
 
   endpoints: {
-    search: "https://marketplace.firefox.com/api/v1/apps/search/?q=<%app_name%>&app_type=hosted&format=JSON",
+    search: "https://marketplace.firefox.com/api/v1/apps/search/?format=JSON&q=<%app_name%>&app_type=<%app_type%>",
     app: "https://marketplace.firefox.com/api/v1/apps/app/<%app_name%>/?format=JSON"
   },
+
+  appType: "hosted",
 
   locale: 'en',
   strings: {
     en : {
-      install: "Install"
+      install: "Install",
+      reviews: "Reviews",
+      description: "Description",
+      permissions: "Permissons",
+      screenshots: "Screenshots"
     }
   },
 

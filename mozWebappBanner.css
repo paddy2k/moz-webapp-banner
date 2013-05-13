@@ -12,8 +12,8 @@ body{
   background-color: #3E4E59;
   background-image: linear-gradient(#566773, #3E4E59);
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15) inset, 0 0 3px 3px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
-  height: 50px;
-  max-height: 50px;
+  height: 45px;
+  max-height: 45px;
   width: 100%;
   font-family: "Open Sans",OpenSansWeb,"Helvetica Neue",Arial,sans-serif;
   margin-bottom: 5px;
@@ -22,13 +22,13 @@ body{
   float:left;
 }
 #mozBanr > nav{
-  line-height: 50px;
+  line-height: 45px;
   margin-left: 0.4em
 }
 #mozBanr .divider{
   width: 1px;
   background-image: linear-gradient(rgba(150, 150, 150, 0.2), rgba(150, 150, 150, 0.8), rgba(150, 150, 150, 0.2));
-  height: 40px;
+  height: 37.5px;
   margin: 5px;
 }
 .divder-right{
@@ -39,8 +39,8 @@ body{
   background-color: #333;
   border-radius: 30px;
   box-shadow: 0px 2px 5px #333;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
 }
 #mozBanr-copy {
   float: left;
@@ -70,7 +70,7 @@ body{
 #mozBanr-install{
   float: right;
   font-size: 13px;
-  margin: 8px 0.4em 0px 0px;
+  margin: 5.5px 0.4em 0px 0px;
   background-color: #1793E5;
   background-image: linear-gradient(#4CB1FF, #1793E5);
   background-repeat: repeat-x;
@@ -89,7 +89,7 @@ body{
 #mozBanr-close{
   width: 18px;
   height: 18px;
-  margin-top: 16px;
+  margin-top: 12.5px;
   background-size: cover;
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAABxElEQVQ4y5XUPasaQRQG4CEhkC5p0twivyCQIv/vgMVNNe0tkuamUhQRsRW/BS38QEQRRRREUEEQEdHq5D1md+/ueLzXDDywM3POy+rOrjmfz8ZDHvOfLn0mPE6nkyBgD3lr94j0BaHH45GAHbJm3nDVt16vHxH53hwOhxiwgsDcQFpPp9P5hdAvcrOfZ7OZ3e/3rCAwDtJqa7XaH2R9lzwJ/SAX0+nU7nY7VhAYD2k11Wo1Emi2220QPB6PLeasIM/VXqlUigbK2Gw2F37waDSymPM9CoXCdaCM1WoV8IOHw6HFnF+Tz+f1QBnL5TLCC36H6xiwplwu/0bNNzVQxmKxuIWANfglP9H6UerUMZ/PNQT8BqnRQ3GUXAR8J1JDJ5NJGAG7crncc7FYfNL2pOcqFEfIR8CuTCYjT/kHfG00Glarkd5I6GAwEATsSqfT4WNzOW71et1qtZIRhPb7fQJ2pVKpIBBzqQvOMV5Lq/U0m81/X6lerxcDDksmk0Eg5ibMD65UKtbty2azL18pvL+22+2ySCQSQSDmRuMH3+oLCvCEn+Lx+LO/0W63zWtu9V3+01ar5Rd8ggfZkLV7uH3+c/oLPpYkkpuUKKYAAAAASUVORK5CYII=');
 }
