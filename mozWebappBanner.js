@@ -24,7 +24,7 @@ var mozBanr = {
 
       manifest = manifest.substr(0,1) == "/" ? manifest : path.join('/') + manifest;
 
-      _this.manifestURL = window.location.protocol +"//"+ window.location.hostname + manifest;
+      _this.manifestURL = window.location.origin + manifest;
 
       _this.util.get(_this.manifestURL, function(json){
         var manifest, searchURL;
