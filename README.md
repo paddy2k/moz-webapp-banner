@@ -17,8 +17,8 @@ Future releases will include additional information automatically pulled from th
 
 Include the JS and CSS file in the head of your page, then initialize the banner with the path to the manifest file.
 
-mozBanr.init(); // defaults to '/manifest.webapp'
+    mozBanr.init(); // defaults to '/manifest.webapp'
 
 or
 
-mozBanr.init('/app/manifest.webapp');
+    mozBanr.init('/app/manifest.webapp');
