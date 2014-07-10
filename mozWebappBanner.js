@@ -18,36 +18,40 @@ var mozBanr = {
     if(navigator.mozApps && !window.localStorage[this.name]){ //
       _this = this;
 
-      // Get absolute path for manifest
-      path = window.location.pathname.split('/');
-      path[path.length-1] = '';
+      window.navigator.mozApps.getSelf().onsuccess = function() {
+        if (!this.result) {
+          // Get absolute path for manifest
+          path = window.location.pathname.split('/');
+          path[path.length-1] = '';
 
-      manifest = manifest.substr(0,1) == "/" ? manifest : path.join('/') + manifest;
+          manifest = manifest.substr(0,1) == "/" ? manifest : path.join('/') + manifest;
 
-      _this.manifestURL = window.location.protocol +"//"+ window.location.hostname + manifest;
+          _this.manifestURL = window.location.protocol +"//"+ window.location.hostname + manifest;
 
-      _this.util.get(_this.manifestURL, function(json){
-        var manifest, searchURL;
-        _this.manifest = JSON.parse(json);
+          _this.util.get(_this.manifestURL, function(json){
+            var manifest, searchURL;
+            _this.manifest = JSON.parse(json);
 
-        request = window.navigator.mozApps.getInstalled();
-        request.onsuccess = function() {
-          // Don't show if app installed
-          if(request.result.length){
-            return false;
-          }
+            request = window.navigator.mozApps.getInstalled();
+            request.onsuccess = function() {
+              // Don't show if app installed
+              if(request.result.length){
+                return false;
+              }
 
-          _this.insertBanner();
-          _this.addEvents();
+              _this.insertBanner();
+              _this.addEvents();
+            }
+
+            // // Query the Marketplace API for rating etc.
+            // searchURL = _this.endpoints.search.replace('<%app_name%>', _this.manifest.name);
+            // _this.util.jsonp(
+            //   searchURL,
+            //   'mozBanr.searchCallback'
+            //  );
+          });
         }
-
-        // // Query the Marketplace API for rating etc.
-        // searchURL = _this.endpoints.search.replace('<%app_name%>', _this.manifest.name).replace('<%app_type%>', _this.appType);
-        // _this.util.jsonp(
-        //   searchURL,
-        //   'mozBanr.searchCallback'
-        //  );
-      });
+      }
     }
   },
 
@@ -104,8 +108,9 @@ var mozBanr = {
     document.getElementById('mozBanr-install').onclick = function(){alert(_this.manifestURL);
       var app = navigator.mozApps.install(_this.manifestURL);
       app.onsuccess = function(data) {
-        // Prevent the banner appearing again
-        window.localStorage.setItem(_this.name, _this.name);
+        // // Prevent the banner appearing again ever
+        // // By default the banner won't appear while the app is installed
+        // window.localStorage.setItem(_this.name, _this.name);
       }
     }
   },
@@ -137,20 +142,14 @@ var mozBanr = {
   },
 
   endpoints: {
-    search: "https://marketplace.firefox.com/api/v1/apps/search/?format=JSON&q=<%app_name%>&app_type=<%app_type%>",
+    search: "https://marketplace.firefox.com/api/v1/apps/search/?q=<%app_name%>&app_type=hosted&format=JSON",
     app: "https://marketplace.firefox.com/api/v1/apps/app/<%app_name%>/?format=JSON"
   },
-
-  appType: "hosted",
 
   locale: 'en',
   strings: {
     en : {
-      install: "Install",
-      reviews: "Reviews",
-      description: "Description",
-      permissions: "Permissons",
-      screenshots: "Screenshots"
+      install: "Install"
     }
   },
 
